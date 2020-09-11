@@ -45,3 +45,21 @@ const printVehicle = (vehicle: Vehicle): void => {
 printVehicle(oldCivic) // what typescript does is check if the oldcivic satifies the interface
 // it checks that all oldCivic properties matches the names and types defined in the interface
 // in that way... an interface is like a contract
+
+// we can even have functions inside an inteface...
+
+interface Vehicle2 {
+  name: string
+  year: number
+  broken: boolean
+  summary(): string // <------ a function
+}
+
+const oldCivic2 = {
+  name: 'civic',
+  year: 2000,
+  broken: true,
+  summary(): string {
+    return `Name: ${this.name}`
+  }
+}
