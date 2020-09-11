@@ -21,3 +21,6 @@ const car = carMarkers[0]
 carMarkers.map((car: string): string => {
   return car // because we indicate the type, typescript help us with method autocompletion
 })
+
+// Flexible types
+const importantDates = [new Date(), '2030-10-10'] // this array is of type (Date | string)[]
