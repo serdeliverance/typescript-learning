@@ -63,3 +63,28 @@ const oldCivic2 = {
     return `Name: ${this.name}`
   }
 }
+
+interface Reportable {
+  summary(): string
+}
+
+const anotherDrink = {
+  color: 'brown',
+  carbonated: true,
+  sugar: 40,
+  summary(): string {
+    return `My drink has ${this.sugar} grams of sugar`
+  }
+}
+
+// interfaces allows different objects to interact with functions that we define as long as
+// those objects satifies the interface. So, interfaces don't care if the object has more
+// properties, it only wants that objects satifies the properties that it defines.
+
+// interfaces allow us to define more generic functions. The point of interfaces is making more reusable code.
+
+// General strategy for Reusable Code in TS:
+
+// * create functions that accept arguments that are typed with interfaces
+
+// * objects/classes can decide to 'implement' a given interfaces to work with a function
