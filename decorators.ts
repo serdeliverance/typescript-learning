@@ -5,7 +5,7 @@ class Boat {
     return `This boats color is ${this.color}`
   }
 
-  @logError
+  @logError('Oops, something were wrong')
   pilot(): void {
     throw new Error()
     console.log('swish')
@@ -17,7 +17,14 @@ function testDecorator(target: any, key: string): void {
   console.log('Key:', key)
 }
 
-function logError(target: any, key: string, desc: PropertyDescriptor): void {
+/**
+ * First decorator sample
+ *
+ * @param target
+ * @param key
+ * @param desc
+ */
+function logErrorOld(target: any, key: string, desc: PropertyDescriptor): void {
   let method = desc.value
 
   desc.value = function() {
@@ -25,6 +32,23 @@ function logError(target: any, key: string, desc: PropertyDescriptor): void {
       method()
     } catch (e) {
       console.log('a problem with boat')
+    }
+  }
+}
+
+/**
+ * Decorator factory sample
+ */
+function logError(errorMessage: string) {
+  return function(target: any, key: string, desc: PropertyDescriptor): void {
+    let method = desc.value
+
+    desc.value = function() {
+      try {
+        method()
+      } catch (e) {
+        console.log(errorMessage)
+      }
     }
   }
 }
